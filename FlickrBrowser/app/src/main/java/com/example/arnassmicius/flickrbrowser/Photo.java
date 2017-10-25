@@ -47,7 +47,7 @@ class Photo {
     }
 
     @Override
-    public String toString() {
+    public String  toString() {
         return "Photo{" +
                 "mTitle='" + mTitle + '\'' +
                 ", mAuthor='" + mAuthor + '\'' +
