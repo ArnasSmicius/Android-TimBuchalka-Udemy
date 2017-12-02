@@ -58,7 +58,7 @@ class FlickrRecyclerViewAdapter extends RecyclerView.Adapter<FlickrRecyclerViewA
         notifyDataSetChanged();
     }
 
-    public Photo getOhoto(int position) {
+    public Photo getPhoto(int position) {
         return ((mPhotosList != null) && (mPhotosList.size() != 0) ? mPhotosList.get(position) : null);
     }
 
