@@ -24,7 +24,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         SQLiteDatabase sqLiteDatabase = getBaseContext().openOrCreateDatabase("sqlite-test-1.db", MODE_PRIVATE, null);
-        String sql = "CREATE TABLE contacts(name TEXT, phone INTEGER, email TEXT);";
+        String sql = "DROP TABLE IF EXISTS contacts;";
+        Log.d(TAG, "onCreate: sql is " + sql);
+        sqLiteDatabase.execSQL(sql);
+        sql = "CREATE TABLE IF NOT EXISTS contacts(name TEXT, phone INTEGER, email TEXT);";
         Log.d(TAG, "onCreate: sql is " + sql);
         sqLiteDatabase.execSQL(sql);
         sql = "INSERT INTO contacts VALUES('tim', 6456789, 'tim@email.com');";
@@ -36,10 +39,12 @@ public class MainActivity extends AppCompatActivity {
 
         Cursor query = sqLiteDatabase.rawQuery("SELECT * FROM contacts;", null);
         if(query.moveToFirst()) {
-            String name = query.getString(0);
-            int phone = query.getInt(1);
-            String email = query.getString(2);
-            Toast.makeText(this, "Name = " + name + " phone = " + phone + " email = " + email, Toast.LENGTH_LONG).show();
+            do {
+                String name = query.getString(0);
+                int phone = query.getInt(1);
+                String email = query.getString(2);
+                Toast.makeText(this, "Name = " + name + " phone = " + phone + " email = " + email, Toast.LENGTH_LONG).show();
+            } while(query.moveToNext());
         }
         query.close();
         sqLiteDatabase.close();
