@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         SQLiteDatabase sqLiteDatabase = getBaseContext().openOrCreateDatabase("sqlite-test-1.db", MODE_PRIVATE, null);
-        String sql = "DROP TABLE IF EXISTS contacts;";
-        Log.d(TAG, "onCreate: sql is " + sql);
-        sqLiteDatabase.execSQL(sql);
-        sql = "CREATE TABLE IF NOT EXISTS contacts(name TEXT, phone INTEGER, email TEXT);";
+//        String sql = "DROP TABLE IF EXISTS contacts;";
+//        Log.d(TAG, "onCreate: sql is " + sql);
+//        sqLiteDatabase.execSQL(sql);
+        String sql = "CREATE TABLE IF NOT EXISTS contacts(name TEXT, phone INTEGER, email TEXT);";
         Log.d(TAG, "onCreate: sql is " + sql);
         sqLiteDatabase.execSQL(sql);
         sql = "INSERT INTO contacts VALUES('tim', 6456789, 'tim@email.com');";
